@@ -1,12 +1,10 @@
-reload:{@[system;"l ",d:.conf.DATA;{x}];-1"Reloaded ",d," on ",string .z.p;}
+reload:{@[system;"l ",d:.conf.HDB;{x}];-1"Reloaded ",d," on ",string .z.p;}
 reload[]
-
-\d .qi
 
 tcounts:{
   $[count[a:tables`.]&`date in key`.;
-    exec t!n from({update t:x from first select n:count i from x where date=max date}each a);
-    (0#`)!0#0]
+    ({[d;a]`date`t`n#update date:d,t:a from first select n:count i from a where date=d}[max date]each a);
+    flip`date`t`n!(0#0Nd;0#`;0#0)]
   }
 
-\d .
+preview:{[t;n] select[n]from t where date=max date}
