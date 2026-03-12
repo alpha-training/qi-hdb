@@ -1,5 +1,4 @@
-reload:{@[system;"l ",d:.conf.HDB;{x}];-1"Reloaded ",d," on ",string .z.p;}
-reload[]
+reload:{if[.qi.exists db:.conf.HDB;system"l ",sdb:.qi.spath db;.qi.info"Reloaded ",sdb]}
 
 tcounts:{
   $[count[a:tables`.]&`date in key`.;
@@ -8,3 +7,5 @@ tcounts:{
   }
 
 preview:{[t;n] select[n]from t where date=max date}
+
+.hdb.init:{reload[]}
