@@ -1,4 +1,7 @@
-reload:{if[.qi.exists db:.conf.HDB;system"l ",sdb:.qi.spath db;.qi.info"Reloaded ",sdb]}
+reload:{
+  if[.qi.exists db:.conf.HDB;system"l ",sdb:.qi.spath db;.qi.info"Reloaded ",sdb];
+  if[not`date in key`.;`date set"d"$()];
+  }
 
 tcounts:{
   $[count[a:tables`.]&`date in key`.;
