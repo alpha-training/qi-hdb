@@ -1,5 +1,5 @@
 reload:{
-  if[.qi.exists db:.conf.HDB;system"l ",sdb:.qi.spath db;.qi.info"Reloaded ",sdb];
+  if[.qi.exists db:.hdb.mydir;system"l ",sdb:.qi.spath db;.qi.info"Reloaded ",sdb];
   if[not`date in key`.;`date set"d"$()];
   }
 
@@ -11,4 +11,7 @@ tcounts:{
 
 preview:{[t;n] select[n]from t where date=max date}
 
-.hdb.init:{reload[]}
+.hdb.init:{
+  .hdb.mydir:.qi.path(.conf.DATA;.proc.self.stackname;`hdb;.proc.self.name);
+  reload[];
+  }
